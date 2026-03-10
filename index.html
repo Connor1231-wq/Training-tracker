@@ -108,71 +108,77 @@ function getDays(w) {
   var pu = w>=5 ? 'Decline push-ups - 10-15' : 'Push-ups - 10-15';
   var gb = w>=5 ? 'Single-leg glute bridges - 12 each' : 'Glute bridges - 15';
 
-  return [
-    { day:'Tuesday', sub:'Tennis evening', tags:['ten'], sessions:[
-      { title:'Evening - Tennis', tasks:[
-        {t:'Tennis session', s:'First session of the plan - ease in'}
-      ]}
-    ]},
-    { day:'Wednesday', sub:'Workout B morning', tags:['str'], sessions:[
-      { title:'Morning - Workout B: Pull + Stability ('+rds+')', tasks:[
-        {t:'Warm-up: 5 min'},
-        {t:'Back widows - 10 reps'},
-        {t:'Reverse lunges - 10 each leg'},
-        {t:'Single-leg Romanian deadlifts - 10 each leg'},
-        {t:'Side plank - 30 sec each side'},
-        {t:'Dead bugs - 12 reps'},
-        {t:'Straight leg raises - 15 each leg', s:'Knee rehab add-on'}
-      ]}
-    ]},
-    { day:'Thursday', sub:'Tempo run', tags:['run'], sessions:[
-      { title:'Tempo Run', tasks:[
-        {t:'Warm-up: 1 km easy jog'},
-        {t:tmp, s:'Can talk in short sentences, not comfortably'},
-        {t:'Cool down: 1 km easy jog'}
-      ]}
-    ]},
-    { day:'Friday', sub:'Tennis + optional core', tags:['ten'], sessions:[
-      { title:'Tennis', tasks:[{t:'Tennis session'}]},
-      { title:'Optional: Core + Mobility (10-15 min)', tasks:[
-        {t:'Hollow hold - 30 sec', s:'3 rounds'},
-        {t:'Russian twists - 20 reps', s:'3 rounds'},
-        {t:'Bird dogs - 12 each side', s:'3 rounds'},
-        {t:'Hip flexor stretch - 30 sec each side', s:'3 rounds'}
-      ]}
-    ]},
-    { day:'Saturday', sub:'Long run', tags:['run'], sessions:[
-      { title:'Long Run', tasks:[
-        {t:lr, s:'Easy conversational pace. Flat route - protect the knee.'}
-      ]}
-    ]},
-    { day:'Sunday', sub:'Tennis', tags:['ten'], sessions:[
-      { title:'Tennis', tasks:[{t:'Match play or social tennis'}]}
-    ]},
-    { day:'Monday', sub: w<=2 ? 'Easy flat run' : 'Hill sprints', tags:['run'], sessions:[
-      { title: w<=2 ? 'Easy Flat Run (Knee Recovery)' : 'Speed - Hill Sprints', tasks: w<=2 ? [
-        {t:'Warm-up: 5 min easy jog'},
-        {t:'20-25 min easy flat run', s:'No hills until knee settles'},
-        {t:'5 min cool down'}
-      ] : [
-        {t:'Warm-up: 5-10 min easy jog + drills'},
-        {t:hill, s:'Walk down recovery'},
-        {t:'5 min cool down'}
-      ]}
-    ]},
-    { day:'Tuesday', sub:'Workout A + Tennis', tags:['str','ten'], sessions:[
-      { title:'Morning - Workout A: Push + Legs ('+rds+')', tasks:[
-        {t:'Warm-up: 5 min'},
-        {t:pu},
-        {t:'Bulgarian split squats - 10 each leg'},
-        {t:gb},
-        {t:'Pike push-ups - 8-10'},
-        {t:'Plank - 30-45 sec'},
-        {t:'Straight leg raises - 15 each leg', s:'Knee rehab add-on'}
-      ]},
-      { title:'Evening - Tennis', tasks:[{t:'Tennis session'}]}
+  var monSession = { day:'Monday', sub: w<=2 ? 'Easy flat run' : 'Hill sprints', tags:['run'], sessions:[
+    { title: w<=2 ? 'Easy Flat Run (Knee Recovery)' : 'Speed - Hill Sprints', tasks: w<=2 ? [
+      {t:'Warm-up: 5 min easy jog'},
+      {t:'20-25 min easy flat run', s:'No hills until knee settles'},
+      {t:'5 min cool down'}
+    ] : [
+      {t:'Warm-up: 5-10 min easy jog + drills'},
+      {t:hill, s:'Walk down recovery'},
+      {t:'5 min cool down'}
     ]}
-  ];
+  ]};
+
+  var tueSession = { day:'Tuesday', sub:'Workout A + Tennis', tags:['str','ten'], sessions:[
+    { title:'Morning - Workout A: Push + Legs ('+rds+')', tasks:[
+      {t:'Warm-up: 5 min'},
+      {t:pu},
+      {t:'Bulgarian split squats - 10 each leg'},
+      {t:gb},
+      {t:'Pike push-ups - 8-10'},
+      {t:'Plank - 30-45 sec'},
+      {t:'Straight leg raises - 15 each leg', s:'Knee rehab add-on'}
+    ]},
+    { title:'Evening - Tennis', tasks:[{t:'Tennis session'}]}
+  ]};
+
+  var wedSession = { day:'Wednesday', sub:'Workout B morning', tags:['str'], sessions:[
+    { title:'Morning - Workout B: Pull + Stability ('+rds+')', tasks:[
+      {t:'Warm-up: 5 min'},
+      {t:'Back widows - 10 reps'},
+      {t:'Reverse lunges - 10 each leg'},
+      {t:'Single-leg Romanian deadlifts - 10 each leg'},
+      {t:'Side plank - 30 sec each side'},
+      {t:'Dead bugs - 12 reps'},
+      {t:'Straight leg raises - 15 each leg', s:'Knee rehab add-on'}
+    ]}
+  ]};
+
+  var thuSession = { day:'Thursday', sub:'Tempo run', tags:['run'], sessions:[
+    { title:'Tempo Run', tasks:[
+      {t:'Warm-up: 1 km easy jog'},
+      {t:tmp, s:'Can talk in short sentences, not comfortably'},
+      {t:'Cool down: 1 km easy jog'}
+    ]}
+  ]};
+
+  var friSession = { day:'Friday', sub:'Tennis + optional core', tags:['ten'], sessions:[
+    { title:'Tennis', tasks:[{t:'Tennis session'}]},
+    { title:'Optional: Core + Mobility (10-15 min)', tasks:[
+      {t:'Hollow hold - 30 sec', s:'3 rounds'},
+      {t:'Russian twists - 20 reps', s:'3 rounds'},
+      {t:'Bird dogs - 12 each side', s:'3 rounds'},
+      {t:'Hip flexor stretch - 30 sec each side', s:'3 rounds'}
+    ]}
+  ]};
+
+  var satSession = { day:'Saturday', sub:'Long run', tags:['run'], sessions:[
+    { title:'Long Run', tasks:[
+      {t:lr, s:'Easy conversational pace. Flat route - protect the knee.'}
+    ]}
+  ]};
+
+  var sunSession = { day:'Sunday', sub:'Tennis', tags:['ten'], sessions:[
+    { title:'Tennis', tasks:[{t:'Match play or social tennis'}]}
+  ]};
+
+  // Week 1 starts Tuesday (today), rest start Monday
+  if(w === 1) {
+    return [ tueSession, wedSession, thuSession, friSession, satSession, sunSession ];
+  } else {
+    return [ monSession, tueSession, wedSession, thuSession, friSession, satSession, sunSession ];
+  }
 }
 
 function tagEl(t) {
@@ -191,8 +197,8 @@ function render() {
   html += '<div class="stats-row">';
   html += '<div class="stat"><div class="stat-n">'+done+'</div><div class="stat-l">Done</div></div>';
   html += '<div class="stat"><div class="stat-n">'+(total-done)+'</div><div class="stat-l">Left</div></div>';
-  html += '<div class="stat"><div class="stat-n">3</div><div class="stat-l">Runs</div></div>';
-  html += '<div class="stat"><div class="stat-n">4</div><div class="stat-l">Tennis</div></div>';
+  html += '<div class="stat"><div class="stat-n">'+(week===1?'2':'3')+'</div><div class="stat-l">Runs</div></div>';
+  html += '<div class="stat"><div class="stat-n">'+(week===1?'3':'4')+'</div><div class="stat-l">Tennis</div></div>';
   html += '</div>';
 
   html += '<div class="section-head">Sessions</div>';
