@@ -200,13 +200,20 @@ function render() {
   var done = 0;
   for(var i=0;i<total;i++) { if(S[k(week,i,'done')]) done++; }
 
+  // Count runs and tennis dynamically
+  var runs = 0; var tennis = 0;
+  for(var i=0;i<ds.length;i++) {
+    if(ds[i].tags.indexOf('run')>=0) runs++;
+    if(ds[i].tags.indexOf('ten')>=0) tennis++;
+  }
+
   var html = '';
 
   html += '<div class="stats-row">';
   html += '<div class="stat"><div class="stat-n">'+done+'</div><div class="stat-l">Done</div></div>';
   html += '<div class="stat"><div class="stat-n">'+(total-done)+'</div><div class="stat-l">Left</div></div>';
-  html += '<div class="stat"><div class="stat-n">'+(week===1?'2':'3')+'</div><div class="stat-l">Runs</div></div>';
-  html += '<div class="stat"><div class="stat-n">'+(week===1?'3':'4')+'</div><div class="stat-l">Tennis</div></div>';
+  html += '<div class="stat"><div class="stat-n">'+runs+'</div><div class="stat-l">Runs</div></div>';
+  html += '<div class="stat"><div class="stat-n">'+tennis+'</div><div class="stat-l">Tennis</div></div>';
   html += '</div>';
 
   html += '<div class="section-head">Sessions</div>';
