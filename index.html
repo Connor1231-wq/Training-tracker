@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,18 +121,25 @@ function getDays(w) {
     ]}
   ]};
 
-  var tueSession = { day:'Tuesday', sub:'Workout A + Tennis', tags:['str','ten'], sessions:[
-    { title:'Morning - Workout A: Push + Legs ('+rds+')', tasks:[
-      {t:'Warm-up: 5 min'},
-      {t:pu},
-      {t:'Bulgarian split squats - 10 each leg'},
-      {t:gb},
-      {t:'Pike push-ups - 8-10'},
-      {t:'Plank - 30-45 sec'},
-      {t:'Straight leg raises - 15 each leg', s:'Knee rehab add-on'}
-    ]},
-    { title:'Evening - Tennis', tasks:[{t:'Tennis session'}]}
-  ]};
+  // Week 1 Tuesday is tennis only. From Week 2, Tuesday is Workout A + Tennis
+  var tueSession = week === 1
+    ? { day:'Tuesday', sub:'Tennis evening', tags:['ten'], sessions:[
+        { title:'Evening - Tennis', tasks:[
+          {t:'Tennis session', s:'First session of the plan - ease in'}
+        ]}
+      ]}
+    : { day:'Tuesday', sub:'Workout A + Tennis', tags:['str','ten'], sessions:[
+        { title:'Morning - Workout A: Push + Legs ('+rds+')', tasks:[
+          {t:'Warm-up: 5 min'},
+          {t:pu},
+          {t:'Bulgarian split squats - 10 each leg'},
+          {t:gb},
+          {t:'Pike push-ups - 8-10'},
+          {t:'Plank - 30-45 sec'},
+          {t:'Straight leg raises - 15 each leg', s:'Knee rehab add-on'}
+        ]},
+        { title:'Evening - Tennis', tasks:[{t:'Tennis session'}]}
+      ]};
 
   var wedSession = { day:'Wednesday', sub:'Workout B morning', tags:['str'], sessions:[
     { title:'Morning - Workout B: Pull + Stability ('+rds+')', tasks:[
